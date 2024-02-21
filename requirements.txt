@@ -1,0 +1,26 @@
+python-dotenv==0.20.0
+pyyaml
+tqdm==4.64.1
+numpy==1.24.4
+opencv-python==4.9.0.80
+opencv-contrib-python==4.9.0.80
+opencv-python-headless==4.9.0.80
+matplotlib==3.5.3
+# scipy==1.2.0
+Pillow==8.4.0
+nbformat
+nbconvert
+jupyter-contrib-nbextensions
+torch==2.1.1
+torchvision==0.16.1
+torchaudio
+pytorch-lightning
+ruamel.yaml
+pyparsing
+timm
+scipy
+scikit-learn==0.22.2
+shapely
+grpcio==1.60.1
+grpcio-tools==1.60.1
+gdown==4.6.0
