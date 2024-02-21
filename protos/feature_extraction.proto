@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+
+service FeatureExtractor {
+
+    rpc predict (ImgBatch) returns (FeatureBatch);
+}
+
+message ImgBatch {
+    bytes imgs_pkl = 1;
+    bytes cam_label_pkl = 2;
+    bytes view_label_pkl = 3;
+}
+
+message FeatureBatch{
+    bytes features_pkl = 1;
+}

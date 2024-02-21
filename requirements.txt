@@ -24,3 +24,4 @@ shapely
 grpcio==1.60.1
 grpcio-tools==1.60.1
 gdown==4.6.0
+tensorboard==2.14.0
