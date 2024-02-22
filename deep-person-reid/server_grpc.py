@@ -35,23 +35,15 @@ class FeatureExtractionServicer(feature_extraction_pb2_grpc.FeatureExtractorServ
             model_name='osnet_x1_0',
             model_path=checkpoint_path,
             device=self.device,
-            image_size=[256, 128]
         )
-
-        self.val_transforms = T.Compose([
-            T.ToTensor(),
-            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ])
 
 
     def predict(self, request, context):
         img_batch = pickle.loads(request.imgs_pkl)
 
         with torch.no_grad():
-            img_batch = (img_batch.permute(0, 2, 3, 1).numpy()[:,:,:,::-1] * 255).astype(np.uint8)
-
             print(f'[{np.random.randint(1, 10)} :-D] Processing batch of shape', img_batch.shape)
-            img_batch = torch.tensor([self.val_transforms(img).tolist() for img in img_batch])
+            img_batch = [img.numpy() for img in img_batch]
             features = self.model(img_batch)
 
         features_pkl = pickle.dumps(features)
@@ -64,7 +56,7 @@ def parse_kwargs():
 
     ap.add_argument("--port", required=True, type=int, help="Port number")
     ap.add_argument("--device", required=True, type=str)
-    ap.add_argument("--checkpoint_path", required=True, type=str)
+    ap.add_argument("--checkpoint_path", type=str, default=None)
 
     kwargs = vars(ap.parse_args())
 

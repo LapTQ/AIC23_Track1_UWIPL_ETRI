@@ -287,6 +287,7 @@ def load_pretrained_weights(model, weight_path):
         if k in model_dict and model_dict[k].size() == v.size():
             new_state_dict[k] = v
             matched_layers.append(k)
+            print('Updated layer: {}'.format(k))
         else:
             discarded_layers.append(k)
 
